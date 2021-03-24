@@ -1,0 +1,54 @@
+---
+name: nombre-de-la-red
+version: 1.0.0
+user: Nombre de usuario enrolado
+channel: Nombre del canal
+walletPath: "<ruta del directorio wallet>" # cuando se quiere usar fabric-network
+hfcKetStorePath: "<ruta del directorio hfc-keystore>" # cuando se quiere usar fabric-client
+chaincode:
+  name: Nombre del chaincode
+  fcns:
+    introducir: createDoc
+    consultar: queryDoc
+client:
+  organization: Nombre de la Organizacion
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Dominio:
+    mspid: OrganizacionMSP
+    peers:
+    - peer0.dominio.gob.bo
+    - peer1.dominio.gob.bo
+    - peer2.dominio.gob.bo
+    certificateAuthorities:
+    - ca.gob.bo
+peers:
+  peer0.dominio.gob.bo:
+    url: grpcs://<ip-peer0>:<puerto>
+    tlsCACerts:
+      path: "./crypto-config/peerOrganizations/dominio.gob.bo/tlsca/tlsca.dominio.gob.bo-cert.pem"
+    grpcOptions:
+      ssl-target-name-override: peer0.dominio.gob.bo
+  peer1.dominio.gob.bo:
+    url: grpcs://<ip-peer1>:<puerto>
+    tlsCACerts:
+      path: "./crypto-config/peerOrganizations/dominio.gob.bo/tlsca/tlsca.dominio.gob.bo-cert.pem"
+    grpcOptions:
+      ssl-target-name-override: peer1.dominio.gob.bo
+  peer2.dominio.gob.bo:
+    url: grpcs://<ip-peer2>:<puerto>
+    tlsCACerts:
+      path: "./crypto-config/peerOrganizations/dominio.gob.bo/tlsca/tlsca.dominio.gob.bo-cert.pem"
+    grpcOptions:
+      ssl-target-name-override: peer2.dominio.gob.bo
+certificateAuthorities:
+  ca.gob.bo:
+    url: https://<ip-ca>:<puerto>
+    caName: ca.gob.bo
+    tlsCACerts:
+      path: "./crypto-config/peerOrganizations/dominio.gob.bo/tlsca/tlsca.dominio.gob.bo-cert.pem"
+    httpOptions:
+      verify: false
